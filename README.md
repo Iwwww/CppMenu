@@ -1,7 +1,9 @@
 # C++ Menu
+
  CppMenu позволяет быстро создавать меню с неограниченной вложенностью. Меню может содержать функции с любыми параметрами.
  
 ## Создание меню
+
  Экземпляр класс ```YMM::Menu``` может хранить как вектор с экземплярами класса ```YMM::Menu```, так и указатели на функции.
 
 ```
@@ -14,7 +16,7 @@ Menu menu("Function", func);
 Menu menu("Menu", vector<Menu>{});
 ```
 
-### Одновложенное меню
+### Меню с одним уровнем вложенности
 
 ```
 Menu menu = Menu("Main", vector<Menu>{
@@ -23,6 +25,8 @@ Menu menu = Menu("Main", vector<Menu>{
         Menu("func3", func3),
         });
 ```
+
+### Многовложенное меню
 
  ```
 Menu menu = Menu("Main", vector<Menu>{
@@ -43,7 +47,7 @@ Menu menu = Menu("Main", vector<Menu>{
 ```
  
 ## Передачи аргументов
- В CppMenu используется типобезопасный конструктор [std::any](https://en.cppreference.com/w/cpp/utility/any) для хранения и передачи используемых в фунциях данных. Аргументы хранятся в векторе с типом [std::any](https://en.cppreference.com/w/cpp/utility/any) ```std::vector<std::any>```, что позволяет исользовать хранить любой тип данных:
+ В CppMenu используется типобезопасный конструктор [std::any](https://en.cppreference.com/w/cpp/utility/any) для хранения и передачи используемых в фунциях аргументов. Аргументы хранятся в векторе с типом [std::any](https://en.cppreference.com/w/cpp/utility/any) ```std::vector<std::any>```, что позволяет исользовать хранить любой тип данных:
 
 ```
 vector<int> numbers{1, 2, 3, 4};
