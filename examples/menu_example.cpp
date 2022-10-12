@@ -65,7 +65,7 @@ int main() {
     vector<std::any> params{
         &numbers
     };
-    
+
     Menu menu = Menu("Main", vector<Menu>{
             Menu("numbers", vector<Menu>{
                     Menu("add_number", add_number),
@@ -80,7 +80,7 @@ int main() {
                     Menu("func4", func4)
                     })
             });
-
+ 
     menu.run(params);
  
     return 0;
