@@ -1,2 +1,4 @@
 *.vim
 compile_flags.txt
+*.o
+*.out
