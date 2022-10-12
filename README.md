@@ -1,13 +1,34 @@
 # C++ Menu
  CppMenu позволяет быстро создавать меню с неограниченной вложенностью. Меню может содержать функции с любыми параметрами.
  
-## О передачи аргументов
+## Создание меню
+ Экземпляр класс ```YMM::Menu``` может хранить как другие экземпляры класса ```YMM::Menu```, так и указатели на функции.
+ 
+ ```
+Menu menu = Menu("Main", vector<Menu>{
+        Menu("numbers", vector<Menu>{
+                Menu("add_number", add_number),
+                Menu("print_numbers", print_numbers)
+                }),
+        Menu("functions 1", vector<Menu>{
+                Menu("func1", func1),
+                Menu("func2", func2)
+                }),
+        Menu("functions 2", vector<Menu>{
+                Menu("func3", func3),
+                Menu("func4", func4)
+                })
+        });
+
+```
+ 
+## Передачи аргументов
  В CppMenu используется типобезопасный конструктор [std::any](https://en.cppreference.com/w/cpp/utility/any) для хранения и передачи используемых в фунциях данных. Аргументы хранятся в векторе с типом [std::any](https://en.cppreference.com/w/cpp/utility/any) ```std::vector<std::any>```, что позволяет исользовать хранить любой тип данных:
 
 ```
-std::vector<int> numbers{1, 2, 3, 4};
+vector<int> numbers{1, 2, 3, 4};
 
-std::vector<std::any> params{
+vector<any> params{
     &numbers
 };
 ```
