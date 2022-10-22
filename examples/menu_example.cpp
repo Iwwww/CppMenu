@@ -9,8 +9,7 @@ using namespace std;
 
 void add_number(vector<any> params) {
     auto* numbers = any_cast<vector<int>*>(params[0]);
-    cout << "input num:";
-    int num = YMM::Menu::input<int>();
+    int num = YMM::Menu::input<int>("input num: ");
     numbers->push_back(num);
 
 }

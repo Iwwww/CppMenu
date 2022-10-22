@@ -27,11 +27,11 @@ namespace YMM {
 
             template<typename T>
             static T input(std::string str) {
-                T num = 0;
+                T input_str{};
                 bool flag = true;
                 while (flag) {
                     std::cout << str;
-                    if (std::cin >> num) {
+                    if (std::cin >> input_str) {
                         flag = false;
                     } else {
                         std::cin.clear();
@@ -39,7 +39,7 @@ namespace YMM {
                     }
                 }
 
-                return num;
+                return input_str;
             }
 
         private:
