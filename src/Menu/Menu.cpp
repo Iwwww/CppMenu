@@ -13,10 +13,23 @@ namespace YMM {
         this->menus = menus;
     }
 
+    Menu::Menu(std::string lable, func function, std::vector<std::any> params) { 
+        this->lable = lable;
+        this->function = function;
+        this->params = params;
+    }
+
+    Menu::Menu(std::string lable, std::vector<Menu> menus, std::vector<std::any> params) {
+        this->lable = lable;
+        this->menus = menus;
+        this->params = params;
+    }
+
     Menu::Menu(const Menu& menu) {
         this->lable = menu.lable;
         this->menus = menu.menus;
         this->function = menu.function;
+        this->params = menu.params;
     }
 
     void Menu::run(std::vector<std::any> params) {
@@ -38,12 +51,20 @@ namespace YMM {
                     flag = false;
                 } else {
                     // run submenu
-                    menus[select].run(params);
+                    if (this->params.empty()) {
+                        menus[select].run(params);
+                    } else {
+                        menus[select].run(this->params);
+                    }
                 }
 
             } else {
                 // run function
-                function(params);
+                if (this->params.empty()) {
+                    function(params);
+                } else {
+                    function(this->params);
+                }
                 flag = false;
             }
         }

@@ -24,6 +24,21 @@ void print_numbers(vector<any> params) {
     cout << endl;
 }
 
+void print_strings(vector<any> params) {
+    auto* strings = any_cast<vector<string>*>(params[0]);
+    std::cout << "strings: ";
+    for (auto s: *strings) {
+        std::cout << s << " ";
+    }
+}
+
+void input_string(vector<any> params) {
+    auto* strings = any_cast<vector<string>*>(params[0]);
+    string str = YMM::Menu::input<string>("input string: ");
+    std::cout << std::endl;
+    strings->push_back(str);
+}
+
 void func1(vector<any> params) {
     std::cout << "func1" << std::endl;
 }
@@ -32,38 +47,25 @@ void func2(vector<any> params) {
     std::cout << "func2" << std::endl;
 }
 
-void func3(vector<any> params) {
-    std::cout << "func3" << std::endl;
-}
-
-void func4(vector<any> params) {
-    std::cout << "func4" << std::endl;
-}
-
-void func5(vector<any> params) {
-    std::cout << "func5" << std::endl;
-}
-
-void func6(vector<any> params) {
-    std::cout << "func6" << std::endl;
-}
-
-void func7(vector<any> params) {
-    std::cout << "func7" << std::endl;
-}
-
-void func8(vector<any> params) {
-    std::cout << "func8" << std::endl;
-}
 
 int main() {
     using namespace YMM;
 
     // init data
     vector<int> numbers{1, 2, 3, 4};
+    vector<string> strings{"hello", "world"};
+    vector<string> strings2{"other", "strings"};
 
     vector<std::any> params{
         &numbers
+    };
+
+    vector<std::any> params_string{
+        &strings
+    };
+
+    vector<std::any> params_string2{
+        &strings2
     };
 
     Menu menu = Menu("Main", vector<Menu>{
@@ -71,14 +73,17 @@ int main() {
                     Menu("add_number", add_number),
                     Menu("print_numbers", print_numbers)
                     }),
+            Menu("strings", vector<Menu>{
+                    Menu("print_strings", print_strings),
+                    Menu("input_string", input_string),
+                    // params_string2 have priority over the params_string
+                    Menu("print_strings2", print_strings, params_string2),
+                    Menu("input_string2", input_string, params_string2),
+                    }, params_string),
             Menu("functions 1", vector<Menu>{
                     Menu("func1", func1),
                     Menu("func2", func2)
                     }),
-            Menu("functions 2", vector<Menu>{
-                    Menu("func3", func3),
-                    Menu("func4", func4)
-                    })
             });
  
     menu.run(params);

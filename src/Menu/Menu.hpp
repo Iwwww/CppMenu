@@ -11,6 +11,8 @@ namespace YMM {
             using func = void(*)(std::vector<std::any>);
             Menu(std::string lable, func function);
             Menu(std::string lable, std::vector<Menu> menus);
+            Menu(std::string lable, func function, std::vector<std::any> params);
+            Menu(std::string lable, std::vector<Menu> menus, std::vector<std::any> params);
             Menu(const Menu& menu);
 
             void run(std::vector<std::any> params);
@@ -41,7 +43,7 @@ namespace YMM {
             }
 
         private:
-
+            std::vector<std::any> params{};
             std::string lable{};
             std::vector<Menu> menus{};
             func function = nullptr;
