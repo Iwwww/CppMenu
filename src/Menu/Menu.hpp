@@ -17,11 +17,18 @@ namespace YMM {
             void printMenu();
             std::string getLable();
 
+
             template<typename T>
             static T input() {
+                return input<T>("");
+            }
+
+            template<typename T>
+            static T input(std::string str) {
                 T num = 0;
                 bool flag = true;
                 while (flag) {
+                    std::cout << str;
                     if (std::cin >> num) {
                         flag = false;
                     } else {
