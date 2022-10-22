@@ -40,16 +40,18 @@ Menu menu = Menu("Main", vector<Menu>{
                 Menu("add_number", add_number),
                 Menu("print_numbers", print_numbers)
                 }),
+        Menu("strings", vector<Menu>{
+                Menu("print_strings", print_strings),
+                Menu("input_string", input_string),
+                // params_string2 have priority over the params_string
+                Menu("print_strings2", print_strings, params_string2),
+                Menu("input_string2", input_string, params_string2),
+                }, params_string),
         Menu("functions 1", vector<Menu>{
                 Menu("func1", func1),
                 Menu("func2", func2)
                 }),
-        Menu("functions 2", vector<Menu>{
-                Menu("func3", func3),
-                Menu("func4", func4)
-                })
         });
-
 ```
  
 ## Аргументы
