@@ -29,7 +29,7 @@ Menu menu = Menu("Main", vector<Menu>{
         Menu("func1", func1),
         Menu("func2", func2),
         Menu("func3", func3),
-        });
+        }, params);
 ```
 
 ### Многовложенное меню
@@ -51,7 +51,7 @@ Menu menu = Menu("Main", vector<Menu>{
                 Menu("func1", func1),
                 Menu("func2", func2)
                 }),
-        });
+        } params);
 ```
  
 ## Аргументы
@@ -69,4 +69,11 @@ vector<any> params{
 
 ```c++
 auto* numbers_ptr = any_cast<vector<int>*>(params[0]);
+```
+
+## Запуск меню
+ Для запуска меню используется метод ```run()```:
+
+```c++
+menu.run();
 ```
