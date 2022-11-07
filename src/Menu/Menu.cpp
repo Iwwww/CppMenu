@@ -32,6 +32,10 @@ namespace YMM {
         this->params = menu.params;
     }
 
+    void Menu::run() {
+        this->run(this->params);
+    }
+
     void Menu::run(std::vector<std::any> params) {
         bool flag = true;
         while (flag) {

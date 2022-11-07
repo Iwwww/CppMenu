@@ -83,9 +83,9 @@ int main() {
                     Menu("func1", func1),
                     Menu("func2", func2)
                     }),
-            });
+            }, params);
  
-    menu.run(params);
+    menu.run();
  
     return 0;
 }

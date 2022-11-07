@@ -16,7 +16,7 @@ public:
        std::vector<std::any> params);
   Menu(const Menu &menu);
 
-  void run(std::vector<std::any> params);
+  void run();
   void printMenu();
   std::string getLable();
 
@@ -40,6 +40,8 @@ public:
   }
 
 private:
+  void run(std::vector<std::any> params);
+
   std::vector<std::any> params{};
   std::string lable{};
   std::vector<Menu> menus{};
